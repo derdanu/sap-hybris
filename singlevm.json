@@ -37,13 +37,19 @@
       "metadata": {
         "description": "Reference for the Subnet."
       }
-    }   
+    },
+    "availabilitySetRef": {
+      "type": "string",
+      "metadata": {
+        "description": "Reference for the Availability Set."
+      }
+    }
   },
   "variables": {
     "computeResouresApiVersion": "2016-04-30-preview",
     "imagePublisher": "RedHat",
     "imageOffer": "RHEL",
-    "imageSku": "7.2",
+    "imageSku": "7.4",
     "OSDiskName": "[concat(parameters('vmName'), '-osdisk')]",
     "nicName": "[concat(parameters('vmName'), '-nic')]"
   },
@@ -110,6 +116,9 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
             }
           ]
+        },
+        "availabilitySet": {
+              "id": "[parameters('availabilitySetRef')]"
         }
       }
     }

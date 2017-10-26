@@ -172,6 +172,16 @@
       }
     },
     {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('webserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },   
+    {
       "name": "[concat('webserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -180,7 +190,8 @@
         "count": "[parameters('numberOfWebservers')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('webserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -206,6 +217,9 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefFrontend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('webserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
