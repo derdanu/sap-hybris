@@ -49,7 +49,7 @@
     "computeResouresApiVersion": "2016-04-30-preview",
     "imagePublisher": "RedHat",
     "imageOffer": "RHEL",
-    "imageSku": "7.4",
+    "imageSku": "7.3",
     "OSDiskName": "[concat(parameters('vmName'), '-osdisk')]",
     "nicName": "[concat(parameters('vmName'), '-nic')]"
   },

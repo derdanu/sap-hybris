@@ -174,11 +174,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('webserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },   
     {
@@ -227,11 +230,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('solrserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },     
     {
@@ -280,11 +286,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('hybrisserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },
     {
@@ -333,11 +342,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('datahubserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },    
     {
@@ -386,11 +398,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('nfsserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },        
     {
@@ -439,11 +454,14 @@
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('DatabaseserverNamePrefix'), '-availabilitySet')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "[providers('Microsoft.Compute', 'availabilitySets').apiVersions[0]]",
       "location": "[resourceGroup().location]",
       "properties": {
         "platformFaultDomainCount": "3",
         "platformUpdateDomainCount": "20"
+      },
+      "sku" : {
+          "name": "Aligned"
       }
     },    
     {
