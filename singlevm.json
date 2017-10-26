@@ -44,8 +44,8 @@
     "imagePublisher": "RedHat",
     "imageOffer": "RHEL",
     "imageSku": "7.2",
-    "OSDiskName": "[concat(parameters('vmName')), '-osdisk')]",
-    "nicName": "[concat(parameters('vmName')), '-nic')]"
+    "OSDiskName": "[concat(parameters('vmName'), '-osdisk')]",
+    "nicName": "[concat(parameters('vmName'), '-nic')]"
   },
   "resources": [
     {
