@@ -2,9 +2,8 @@
 
 ## Deploy via Commandline
 ````
-az group  create --name hybrisdemo --location westeurope
+az group create --name hybrisdemo --location westeurope
 az group deployment create --resource-group hybrisdemo --template-uri https://raw.githubusercontent.com/derdanu/sap-hybris/master/azuredeploy.json
-az group delete --name hybrisdemo
 ````
 ## Deploy via Azure Portal 
 
