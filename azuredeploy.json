@@ -109,7 +109,7 @@
    }  ,
    "nfsserverNamePrefix": {
       "type": "string",
-      "defaultValue": "datahubserver",      
+      "defaultValue": "nfsserver",      
       "metadata": {
         "description": "Prefix Name for the Nfsserver."
       }
@@ -123,7 +123,7 @@
    }  ,
    "databaseserverNamePrefix": {
       "type": "string",
-      "defaultValue": "datahubserver",      
+      "defaultValue": "databaseserver",      
       "metadata": {
         "description": "Prefix Name for the Databaseserver."
       }
@@ -398,7 +398,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
       "copy": {
-        "name": "datahubserverSet",
+        "name": "nfsserverSet",
         "count": "[parameters('numberOfNfsserver')]"
       },
       "dependsOn": [
@@ -451,7 +451,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
       "copy": {
-        "name": "datahubserverSet",
+        "name": "databaseserverSet",
         "count": "[parameters('numberOfDatabaseserver')]"
       },
       "dependsOn": [
