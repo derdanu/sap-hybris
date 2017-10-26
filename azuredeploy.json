@@ -1,0 +1,129 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "type": "string",
+      "defaultValue": "azadmin",
+      "metadata": {
+        "description": "User name for the Virtual Machine."
+      }
+    },
+    "virtualNetworkName": {
+      "type": "string",
+      "defaultValue": "Vnet",      
+      "metadata": {
+        "description": "Name for the Virtual Network."
+      }
+    },
+   "virtualNetworkPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/22",      
+      "metadata": {
+        "description": "Prefix for the Virtual Network."
+      }
+    },
+    "subnetNameFrontend": {
+      "type": "string",
+      "defaultValue": "Frontend",      
+      "metadata": {
+        "description": "Name for the Frontend Subnet."
+      }
+    },
+   "subnetPrefixFrontend": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",      
+      "metadata": {
+        "description": "Prefix for the Frontend Subnet."
+      }
+    },
+   "subnetNameBackend": {
+      "type": "string",
+      "defaultValue": "Backend",      
+      "metadata": {
+        "description": "Name for the Backend Subnet."
+      }
+    },
+   "subnetPrefixBackend": {
+      "type": "string",
+      "defaultValue": "10.0.1.0/24",      
+      "metadata": {
+        "description": "Prefix for the Backend Subnet."
+      }
+    
+   }
+
+  },
+  "variables": {
+    "baseTemplateUrl": "https://raw.githubusercontent.com/derdanu/sap-hybris/master/",
+    "baseVMachineTemplateUri": "[concat(variables('baseTemplateUrl'), 'singlevm.json')]",          
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
+    "subnetRefFrontend": "[concat(variables('vnetID'),'/subnets/',parameters('subnetNameFrontend'))]",
+    "subnetRefBackend": "[concat(variables('vnetID'),'/subnets/',parameters('subnetNameBackend'))]"    
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworkName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('virtualNetworkPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('subnetNameFrontend')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnetPrefixFrontend')]"
+            }
+          },
+          {
+            "name": "[parameters('subnetNameBackend')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnetPrefixBackend')]"
+            }
+          },          
+        ]
+      }
+    },
+    {
+      "name": "[concat('dummy', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "nodeSet",
+        "count": "1"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUriNode')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat('node', padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_D2"
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefFrontend')]"
+          }
+        }
+      }
+    }
+  ]
+}
