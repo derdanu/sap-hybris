@@ -23,7 +23,7 @@
     "vmSize": {
       "type": "string",
       "metadata": {
-        "description": "Name for the Virtual Machine."
+        "description": "Size for the Virtual Machine."
       }
     },    
     "subnetRef": {
@@ -38,8 +38,8 @@
     "imagePublisher": "RedHat",
     "imageOffer": "RHEL",
     "imageSku": "7.2",
-    "OSDiskName": "[concat(uniquestring(parameters('vmName')), 'osdisk')]",
-    "nicName": "[concat(uniquestring(parameters('vmName')), 'nic')]"
+    "OSDiskName": "[concat(parameters('vmName')), '-osdisk')]",
+    "nicName": "[concat(parameters('vmName')), '-nic')]"
   },
   "resources": [
     {

@@ -90,11 +90,11 @@
       }
     },
     {
-      "name": "[concat('dummy', copyindex())]",
+      "name": "[concat('webserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
       "copy": {
-        "name": "nodeSet",
+        "name": "webserverSet",
         "count": 1
       },
       "dependsOn": [
@@ -114,10 +114,10 @@
             "value": "Demo123#123"
           },
           "vmName": {
-            "value": "[concat('node', padLeft(add(copyindex(), 1), 2, '0'))]"
+            "value": "[concat('webserver', padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_D2"
+            "value": "Standard_DS2"
           },
           "subnetRef": {
             "value": "[variables('subnetRefFrontend')]"
