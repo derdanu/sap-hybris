@@ -95,7 +95,7 @@
       "apiVersion": "2013-03-01",
       "copy": {
         "name": "nodeSet",
-        "count": "1"
+        "count": 1
       },
       "dependsOn": [
         "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
