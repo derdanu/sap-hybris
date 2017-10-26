@@ -60,12 +60,81 @@
    },
    "numberOfWebservers": {
       "type": "int",
-      "defaultValue": 1,      
+      "defaultValue": 2,      
       "metadata": {
         "description": "Number of the Webservers."
       }
-   }   
-
+   },
+   "solrserverNamePrefix": {
+      "type": "string",
+      "defaultValue": "solrerver",      
+      "metadata": {
+        "description": "Prefix Name for the Solrserver."
+      }
+   },
+   "numberOfSolrserver": {
+      "type": "int",
+      "defaultValue": 3,      
+      "metadata": {
+        "description": "Number of the Solrserver."
+      }
+   },
+   "hybrisserverNamePrefix": {
+      "type": "string",
+      "defaultValue": "hybrisserver",      
+      "metadata": {
+        "description": "Prefix Name for the Hybrisserver."
+      }
+   },
+   "numberOfHybrisserver": {
+      "type": "int",
+      "defaultValue": 2,      
+      "metadata": {
+        "description": "Number of the Hybrisserver."
+      }
+   },
+   "datahubserverNamePrefix": {
+      "type": "string",
+      "defaultValue": "datahubserver",      
+      "metadata": {
+        "description": "Prefix Name for the Datahubserver."
+      }
+   },
+   "numberOfDatahubserver": {
+      "type": "int",
+      "defaultValue": 2,      
+      "metadata": {
+        "description": "Number of the Datahubserver."
+      }
+   }  ,
+   "nfsserverNamePrefix": {
+      "type": "string",
+      "defaultValue": "datahubserver",      
+      "metadata": {
+        "description": "Prefix Name for the Nfsserver."
+      }
+   },
+   "numberOfNfsserver": {
+      "type": "int",
+      "defaultValue": 2,      
+      "metadata": {
+        "description": "Number of the Nfsserver."
+      }
+   }  ,
+   "databaseserverNamePrefix": {
+      "type": "string",
+      "defaultValue": "datahubserver",      
+      "metadata": {
+        "description": "Prefix Name for the Databaseserver."
+      }
+   },
+   "numberOfDatabaseserver": {
+      "type": "int",
+      "defaultValue": 2,      
+      "metadata": {
+        "description": "Number of the Databaseserver."
+      }
+   }               
   },
   "variables": {
     "baseTemplateUrl": "https://raw.githubusercontent.com/derdanu/sap-hybris/master/",
@@ -140,6 +209,201 @@
           }
         }
       }
-    }
+    },
+  {
+      "name": "[concat('solrserver', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "solrserverSet",
+        "count": "[parameters('numberOfSolrserver')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat(parameters('solrserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_DS12_v2_Promo"
+          },
+          "diskSizeGB": {
+            "value": 32
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefBackend')]"
+          }
+        }
+      }
+    }   ,
+  {
+      "name": "[concat('hybrisserver', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "hybrisserverSet",
+        "count": "[parameters('numberOfHybrisserver')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat(parameters('hybrisserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_GS1"
+          },
+          "diskSizeGB": {
+            "value": 512
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefBackend')]"
+          }
+        }
+      }
+    }  ,
+  {
+      "name": "[concat('datahubserver', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "datahubserverSet",
+        "count": "[parameters('numberOfDatahubserver')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat(parameters('datahubserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_DS3_v2_Promo"
+          },
+          "diskSizeGB": {
+            "value": 32
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefBackend')]"
+          }
+        }
+      }
+    } ,
+  {
+      "name": "[concat('nfsserver', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "datahubserverSet",
+        "count": "[parameters('numberOfNfsserver')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat(parameters('nfsserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_DS3_v2_Promo"
+          },
+          "diskSizeGB": {
+            "value": 32
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefBackend')]"
+          }
+        }
+      }
+    }    ,
+  {
+      "name": "[concat('databaseserver', copyindex())]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2013-03-01",
+      "copy": {
+        "name": "datahubserverSet",
+        "count": "[parameters('numberOfDatabaseserver')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('baseVMachineTemplateUri')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "Demo123#123"
+          },
+          "vmName": {
+            "value": "[concat(parameters('DatabaseserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
+          },
+          "vmSize": {
+            "value": "Standard_DS12_v2_Promo"
+          },
+          "diskSizeGB": {
+            "value": 32
+          },
+          "subnetRef": {
+            "value": "[variables('subnetRefBackend')]"
+          }
+        }
+      }
+    }     
   ]
 }
