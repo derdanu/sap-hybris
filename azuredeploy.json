@@ -9,6 +9,12 @@
         "description": "User name for the Virtual Machine."
       }
     },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
+    },    
     "virtualNetworkName": {
       "type": "string",
       "defaultValue": "Vnet",      
@@ -207,7 +213,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('webserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
@@ -263,7 +269,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('solrserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
@@ -319,7 +325,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('hybrisserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
@@ -375,7 +381,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('datahubserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
@@ -431,7 +437,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('nfsserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
@@ -487,7 +493,7 @@
             "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
-            "value": "Demo123#123"
+            "value": "[parameters('adminPassword')]"
           },
           "vmName": {
             "value": "[concat(parameters('DatabaseserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
