@@ -50,6 +50,7 @@
     "imagePublisher": "RedHat",
     "imageOffer": "RHEL",
     "imageSku": "7-RAW",
+    "version": "7.4",
     "OSDiskName": "[concat(parameters('vmName'), '-osdisk')]",
     "nicName": "[concat(parameters('vmName'), '-nic')]"
   },
