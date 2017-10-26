@@ -224,7 +224,17 @@
         }
       }
     },
-  {
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('solrserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },     
+    {
       "name": "[concat('solrserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -233,7 +243,8 @@
         "count": "[parameters('numberOfSolrserver')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('solrserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -259,11 +270,24 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('solrserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
-    }   ,
-  {
+    },
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('hybrisserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },
+    {
       "name": "[concat('hybrisserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -272,7 +296,8 @@
         "count": "[parameters('numberOfHybrisserver')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('hybrisserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -298,11 +323,24 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('hybrisserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
-    }  ,
-  {
+    },
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('datahubserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },    
+    {
       "name": "[concat('datahubserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -311,7 +349,8 @@
         "count": "[parameters('numberOfDatahubserver')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('datahubserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -337,11 +376,24 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('datahubserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
-    } ,
-  {
+    },
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('nfsserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },        
+    {
       "name": "[concat('nfsserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -350,7 +402,8 @@
         "count": "[parameters('numberOfNfsserver')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('nfsserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -376,11 +429,24 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('nfsserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
-    }    ,
-  {
+    },
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[concat(parameters('DatabaseserverNamePrefix'), '-availabilitySet')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "platformFaultDomainCount": "3",
+        "platformUpdateDomainCount": "20"
+      }
+    },    
+    {
       "name": "[concat('databaseserver', copyindex())]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2013-03-01",
@@ -389,7 +455,8 @@
         "count": "[parameters('numberOfDatabaseserver')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', concat(parameters('DatabaseserverNamePrefix'), '-availabilitySet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -415,6 +482,9 @@
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
+          },
+          "availabilitySetRef": {
+             "value": "[resourceId('Microsoft.Compute/availabilitySets', concat(parameters('DatabaseserverNamePrefix'), '-availabilitySet'))]"
           }
         }
       }
