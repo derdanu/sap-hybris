@@ -25,7 +25,13 @@
       "metadata": {
         "description": "Size for the Virtual Machine."
       }
-    },    
+    },  
+    "diskSizeGB": {
+      "type": "int",
+      "metadata": {
+        "description": "Size for the Virtual Machine Os Disc."
+      }
+    },  
     "subnetRef": {
       "type": "string",
       "metadata": {
@@ -94,7 +100,8 @@
             "managedDisk": {
               "storageAccountType": "Premium_LRS"
             },
-            "caching": "ReadWrite"
+            "caching": "ReadWrite",
+            "diskSizeGB": "[parameters('diskSizeGB')]"
           } 
         },
         "networkProfile": {

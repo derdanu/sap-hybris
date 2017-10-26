@@ -119,6 +119,9 @@
           "vmSize": {
             "value": "Standard_DS2"
           },
+          "diskSizeGB": {
+            "value": 128
+          },
           "subnetRef": {
             "value": "[variables('subnetRefFrontend')]"
           }
