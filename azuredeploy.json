@@ -103,7 +103,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('baseVMachineTemplateUriNode')]",
+          "uri": "[variables('baseVMachineTemplateUri')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
