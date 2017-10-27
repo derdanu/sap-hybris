@@ -129,7 +129,7 @@
    },
    "datahubserverserverVMSize": {
       "type": "string",
-      "defaultValue": "xxStandard_DS2_v2_Promo",      
+      "defaultValue": "Standard_DS3_v2_Promo",      
       "metadata": {
         "description": "Vm Size for the Datahubserver."
       }
