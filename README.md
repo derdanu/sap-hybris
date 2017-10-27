@@ -11,7 +11,7 @@ az group deployment create --resource-group hybrisdemoprod --template-uri https:
 ### Deploy Non-Prod
 ````
 az group create --name hybrisdemononprod --location westeurope
-az group deployment create --resource-group hybhybrisdemononprodrisdemo --template-uri https://raw.githubusercontent.com/derdanu/sap-hybris/master/azuredeploy.json --parameters @azuredeploy.parameters.non-prod.json
+az group deployment create --resource-group hybrisdemononprod --template-uri https://raw.githubusercontent.com/derdanu/sap-hybris/master/azuredeploy.json --parameters @azuredeploy.parameters.non-prod.json
 ````
 
 ## Deploy via Azure Portal 
