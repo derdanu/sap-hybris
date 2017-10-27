@@ -26,11 +26,17 @@
         "nfsserverVMSize": {
             "value": "Standard_DS2_v2_Promo"
         },
+        "discSizeOfNfsserver": {
+            "value": 128
+        },
         "numberOfDatabaseserver": {
             "value": 1
         },
         "databaseserverVMSize": {
             "value": "Standard_DS2_v2_Promo"
         },
+        "discSizeOfDatabaseserver": {
+            "value": 128
+        },        
     }
 }
