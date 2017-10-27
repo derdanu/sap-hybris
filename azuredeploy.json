@@ -64,6 +64,13 @@
         "description": "Prefix Name for the Webservers."
       }
    },
+   "webserverVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS2_v2_Promo",      
+      "metadata": {
+        "description": "Vm Size for the Webservers."
+      }
+   },   
    "numberOfWebservers": {
       "type": "int",
       "defaultValue": 2,      
@@ -78,6 +85,13 @@
         "description": "Prefix Name for the Solrserver."
       }
    },
+   "solrserverVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS12_v2_Promo",      
+      "metadata": {
+        "description": "Vm Size for the Solrserver."
+      }
+   },      
    "numberOfSolrserver": {
       "type": "int",
       "defaultValue": 3,      
@@ -92,6 +106,13 @@
         "description": "Prefix Name for the Hybrisserver."
       }
    },
+   "hybrisserverserverVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_GS1",      
+      "metadata": {
+        "description": "Vm Size for the Hybrisserver."
+      }
+   },  
    "numberOfHybrisserver": {
       "type": "int",
       "defaultValue": 2,      
@@ -106,6 +127,13 @@
         "description": "Prefix Name for the Datahubserver."
       }
    },
+   "datahubserverserverVMSize": {
+      "type": "string",
+      "defaultValue": "xxStandard_DS2_v2_Promo",      
+      "metadata": {
+        "description": "Vm Size for the Datahubserver."
+      }
+   },  
    "numberOfDatahubserver": {
       "type": "int",
       "defaultValue": 2,      
@@ -120,6 +148,13 @@
         "description": "Prefix Name for the Nfsserver."
       }
    },
+   "nfsserverVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS3_v2_Promo",      
+      "metadata": {
+        "description": "Vm Size for the Nfsserver."
+      }
+   },  
    "numberOfNfsserver": {
       "type": "int",
       "defaultValue": 2,      
@@ -134,6 +169,13 @@
         "description": "Prefix Name for the Databaseserver."
       }
    },
+   "databaseserverVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS12_v2_Promo",      
+      "metadata": {
+        "description": "Vm Size for the Databaseserver."
+      }
+   },  
    "numberOfDatabaseserver": {
       "type": "int",
       "defaultValue": 2,      
@@ -219,7 +261,7 @@
             "value": "[concat(parameters('webserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_DS2_v2_Promo"
+            "value": "[parameters('webserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 128
@@ -275,7 +317,7 @@
             "value": "[concat(parameters('solrserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_DS12_v2_Promo"
+            "value": "[parameters('solrserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 32
@@ -331,7 +373,7 @@
             "value": "[concat(parameters('hybrisserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_GS1"
+            "value": "[parameters('hybrisserverserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 512
@@ -387,7 +429,7 @@
             "value": "[concat(parameters('datahubserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_DS3_v2_Promo"
+            "value": "[parameters('datahubserverserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 32
@@ -443,7 +485,7 @@
             "value": "[concat(parameters('nfsserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_DS3_v2_Promo"
+            "value": "[parameters('nfsserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 32
@@ -499,7 +541,7 @@
             "value": "[concat(parameters('DatabaseserverNamePrefix'), padLeft(add(copyindex(), 1), 2, '0'))]"
           },
           "vmSize": {
-            "value": "Standard_DS12_v2_Promo"
+            "value": "[parameters('databaseserverVMSize')]"
           },
           "diskSizeGB": {
             "value": 32
