@@ -108,7 +108,7 @@
    },
    "discSizeOfSolrserver": {
       "type": "int",
-      "defaultValue": 512,      
+      "defaultValue": 256,      
       "metadata": {
         "description": "Disc Size of the Solrserver."
       }
@@ -164,7 +164,7 @@
    },
    "discSizeOfDatahubserver": {
       "type": "int",
-      "defaultValue": 512,      
+      "defaultValue": 256,      
       "metadata": {
         "description": "Disc Size of the Datahubserver."
       }
@@ -192,7 +192,7 @@
    },
    "discSizeOfNfsserver": {
       "type": "int",
-      "defaultValue": 512,      
+      "defaultValue": 256,      
       "metadata": {
         "description": "Disc Size of the Nfsserver."
       }
@@ -220,7 +220,7 @@
    }, 
    "discSizeOfDatabaseserver": {
       "type": "int",
-      "defaultValue": 512,      
+      "defaultValue": 256,      
       "metadata": {
         "description": "Disc Size of the Databaseserver."
       }
