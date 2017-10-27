@@ -78,6 +78,13 @@
         "description": "Number of the Webservers."
       }
    },
+   "discSizeOfWebservers": {
+      "type": "int",
+      "defaultValue": 128,      
+      "metadata": {
+        "description": "Disc Size of the Webservers."
+      }
+   },   
    "solrserverNamePrefix": {
       "type": "string",
       "defaultValue": "solrerver",      
@@ -99,6 +106,13 @@
         "description": "Number of the Solrserver."
       }
    },
+   "discSizeOfSolrserver": {
+      "type": "int",
+      "defaultValue": 512,      
+      "metadata": {
+        "description": "Disc Size of the Solrserver."
+      }
+   }, 
    "hybrisserverNamePrefix": {
       "type": "string",
       "defaultValue": "hybrisserver",      
@@ -118,6 +132,13 @@
       "defaultValue": 2,      
       "metadata": {
         "description": "Number of the Hybrisserver."
+      }
+   },
+   "discSizeOfHybrisserver": {
+      "type": "int",
+      "defaultValue": 512,      
+      "metadata": {
+        "description": "Disc Size of the Hybrisserver."
       }
    },
    "datahubserverNamePrefix": {
@@ -140,7 +161,14 @@
       "metadata": {
         "description": "Number of the Datahubserver."
       }
-   }  ,
+   },
+   "discSizeOfDatahubserver": {
+      "type": "int",
+      "defaultValue": 512,      
+      "metadata": {
+        "description": "Disc Size of the Datahubserver."
+      }
+   },
    "nfsserverNamePrefix": {
       "type": "string",
       "defaultValue": "nfsserver",      
@@ -161,7 +189,14 @@
       "metadata": {
         "description": "Number of the Nfsserver."
       }
-   }  ,
+   },
+   "discSizeOfNfsserver": {
+      "type": "int",
+      "defaultValue": 512,      
+      "metadata": {
+        "description": "Disc Size of the Nfsserver."
+      }
+   },
    "databaseserverNamePrefix": {
       "type": "string",
       "defaultValue": "databaseserver",      
@@ -182,7 +217,14 @@
       "metadata": {
         "description": "Number of the Databaseserver."
       }
-   }               
+   }, 
+   "discSizeOfDatabaseserver": {
+      "type": "int",
+      "defaultValue": 512,      
+      "metadata": {
+        "description": "Disc Size of the Databaseserver."
+      }
+   }              
   },
   "variables": {
     "baseTemplateUrl": "https://raw.githubusercontent.com/derdanu/sap-hybris/master/",
@@ -264,7 +306,7 @@
             "value": "[parameters('webserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 128
+            "value": "[parameters('discSizeOfWebservers')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefFrontend')]"
@@ -320,7 +362,7 @@
             "value": "[parameters('solrserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 32
+            "value": "[parameters('discSizeOfSolrserver')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
@@ -376,7 +418,7 @@
             "value": "[parameters('hybrisserverserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 512
+            "value": "[parameters('discSizeOfHybrisserver')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
@@ -432,7 +474,7 @@
             "value": "[parameters('datahubserverserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 32
+            "value": "[parameters('discSizeOfDatahubserver')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
@@ -488,7 +530,7 @@
             "value": "[parameters('nfsserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 32
+            "value": "[parameters('discSizeOfNfsserver')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
@@ -544,7 +586,7 @@
             "value": "[parameters('databaseserverVMSize')]"
           },
           "diskSizeGB": {
-            "value": 32
+            "value": "[parameters('discSizeOfDatabaseserver')]"
           },
           "subnetRef": {
             "value": "[variables('subnetRefBackend')]"
